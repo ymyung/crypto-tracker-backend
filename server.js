@@ -16,7 +16,7 @@ app.use(express.json())
 // debugging
 app.use((req, res, next) => {
     console.log(req.path, req.method)
-    next ()
+    next()
 })
 
 // routes

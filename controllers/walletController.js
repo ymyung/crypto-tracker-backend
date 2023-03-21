@@ -35,9 +35,10 @@ const getWallet = async (req, res) => {
 // create a new wallet
 const createWallet = async (req, res) => {
     try {
-        const { id, name, image, amount, value } = req.body
+        const { name, image, amount, value } = req.body
 
-        const response = await Wallet.create({ id, name, image, amount, value })
+        const response = await Wallet.create({ name, image, amount, value })
+        console.log(response)
 
         res.status(200).json(response)
     } catch(error) {

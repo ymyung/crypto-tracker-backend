@@ -6,10 +6,10 @@ const {
     createWallet,
     editWallet,
     deleteWallet
-} = require('../controllers')
+} = require('../controllers/walletController')
 
 // get all projects
-router.use('/', getWallets)
+router.get('/', getWallets)
 
 // get one project
 router.get('/:id', getWallet)
