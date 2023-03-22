@@ -62,6 +62,23 @@ const editWallet = async (req, res) => {
     }
 }
 
+// delete a wallet
+const deleteWallet = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).json({ error: 'No such wallet' })
+        }
+
+        const response = await Wallet.findOneAndDelete( id )
+
+        res.status(200).json({ message: `Wallet ${response.name} has been deleted` })
+    } catch(error) {
+        res.status(400).json({error})
+    }
+}
+
 module.exports = {
     getWallets,
     getWallet,
