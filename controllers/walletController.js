@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 // get all wallets
 const getWallets = async (req, res) => {
     try {
-        const response = await Wallet.find({}).sort({ value: -1 })
+        const response = await Wallet.find({}).sort({ amount: -1 })
 
         res.status(200).json(response)
     } catch(error) {
@@ -35,10 +35,9 @@ const getWallet = async (req, res) => {
 // create a new wallet
 const createWallet = async (req, res) => {
     try {
-        const { name, image, amount, value } = req.body
+        const { name, image, amount } = req.body
 
-        const response = await Wallet.create({ name, image, amount, value })
-        console.log(response)
+        const response = await Wallet.create({ name, image, amount })
 
         res.status(200).json(response)
     } catch(error) {
@@ -68,6 +67,8 @@ const deleteWallet = async (req, res) => {
         const { id } = req.params
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
+            report
+            
             return res.status(404).json({ error: 'No such wallet' })
         }
 

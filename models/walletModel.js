@@ -14,10 +14,6 @@ const walletSchema = new Schema({
     amount: {
         type: Number,
         required: true
-    }, 
-    value: {
-        type: Number,
-        required: true
     }
 })
 
